@@ -41,7 +41,7 @@ public class GobbleRepositoryImpl implements GobbleRepository {
     ResultInfo resultInfo= new ResultInfo();
     resultInfo.setGrid(grid);
     resultInfo.setWordMap(wordMap);
-    resultInfo.setTotalScore(totalScore);
+    resultInfo.setTotalScore(totalScore) ;
     return resultInfo;
   }
 
