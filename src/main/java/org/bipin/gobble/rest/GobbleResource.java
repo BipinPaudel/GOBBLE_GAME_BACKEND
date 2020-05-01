@@ -1,11 +1,10 @@
 package org.bipin.gobble.rest;
 
-import org.bipin.gobble.lib.Dictionary;
 import org.bipin.gobble.lib.utils.RestResponse;
 import org.bipin.gobble.repositories.GobbleRepository;
 import org.bipin.gobble.repositories.infos.GameInfo;
+import org.bipin.gobble.rest.adaptors.GameRequestAdaptor;
 
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,7 +15,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Set;
 
 /**
  * @author bipin on 2020-05-01 11:09
@@ -29,17 +27,18 @@ import java.util.Set;
 public class GobbleResource {
 
   private GobbleRepository gobbleRepository;
+  private GameRequestAdaptor gameRequestAdaptor;
 
   @Inject
-  public GobbleResource(GobbleRepository gobbleRepository) {
+  public GobbleResource(GobbleRepository gobbleRepository, GameRequestAdaptor gameRequestAdaptor) {
     this.gobbleRepository = gobbleRepository;
+    this.gameRequestAdaptor = gameRequestAdaptor;
   }
 
   @POST
   public Response playGame(JsonObject jsonObject){
     GameInfo info= new GameInfo();
-    info.setTest(jsonObject.getString("abc",""));
-    return RestResponse.ok(gobbleRepository.execute(info));
+    return RestResponse.ok(gobbleRepository.execute(gameRequestAdaptor.toInfo(jsonObject)));
   }
 
 }

@@ -34,7 +34,6 @@ public class Dictionary {
   }
 
   public Set<String> produce() {
-    System.out.println("CALLING LOADD");
     Set<String> words = new HashSet<>();
     InputStream in = getClass()
         .getResourceAsStream("/words.txt");

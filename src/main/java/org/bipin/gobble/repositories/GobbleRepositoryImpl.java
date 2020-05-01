@@ -29,7 +29,6 @@ public class GobbleRepositoryImpl implements GobbleRepository {
 
   @Override
   public ResultInfo execute(GameInfo info) {
-    System.out.println("best "+dictionaryRepository.isWordValidEnglishWord(info.getTest()));
     validateInput(info);
 
 
