@@ -1,10 +1,10 @@
 package org.bipin.gobble.repositories;
 
+import org.bipin.gobble.repositories.dictionary.DictionaryRepository;
 import org.bipin.gobble.repositories.infos.GameInfo;
 import org.bipin.gobble.repositories.infos.ResultInfo;
 
 import javax.inject.Inject;
-import javax.xml.transform.Result;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,22 +19,29 @@ public class GobbleRepositoryImpl implements GobbleRepository {
   private static final Logger LOGGER= Logger.getLogger(GobbleRepositoryImpl.class.getName());
 
   private SearchRepository searchRepository;
-
+  private DictionaryRepository dictionaryRepository;
   @Inject
-  public GobbleRepositoryImpl(SearchRepository searchRepository) {
+  public GobbleRepositoryImpl(SearchRepository searchRepository,
+                              DictionaryRepository dictionaryRepository) {
     this.searchRepository = searchRepository;
+    this.dictionaryRepository = dictionaryRepository;
   }
 
   @Override
   public ResultInfo execute(GameInfo info) {
-    //TODO validation goes here;
+    System.out.println("best "+dictionaryRepository.isWordValidEnglishWord(info.getTest()));
+    validateInput(info);
+
 
     List<String> correctWords= searchValidWordsInGrid(info.getInputWords(),info.getGrid());
-
     int totalScore= prepareTotalScore(correctWords);
     Map<String,Boolean> wordMap= prepareWordMap(correctWords,info.getInputWords());
 
     return prepareResponse(totalScore,wordMap,info.getGrid());
+  }
+
+  public void validateInput(GameInfo info){
+    //VALIDATE HERE
   }
 
   private ResultInfo prepareResponse(int totalScore, Map<String, Boolean> wordMap, List<List<Character>> grid) {
@@ -53,14 +60,13 @@ public class GobbleRepositoryImpl implements GobbleRepository {
 
   private List<String> getValidWordsByCheckinInDictionary(List<String> inputWords) {
     return inputWords.stream()
-        .filter(word-> true)
+        .filter(word-> dictionaryRepository.isWordValidEnglishWord(word))
         .collect(Collectors.toList());
   }
 
   private Map<String, Boolean> prepareWordMap(List<String> correctWords, List<String> inputWords) {
     Map<String,Boolean> wordMap= new HashMap<>();
     inputWords.forEach(in->{
-
         wordMap.put(in,correctWords.contains(in));
 
     });

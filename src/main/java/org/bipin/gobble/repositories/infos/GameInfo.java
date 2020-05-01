@@ -11,6 +11,7 @@ import java.util.List;
 public class GameInfo implements ServiceObject {
   private List<String> inputWords;
   private List<List<Character>> grid;
+  private String test;
 
   public GameInfo(List<String> inputWords, List<List<Character>> grid) {
     this.inputWords = inputWords;
@@ -20,6 +21,14 @@ public class GameInfo implements ServiceObject {
   public GameInfo() {
     inputWords= new ArrayList<>();
     grid= new ArrayList<>();
+  }
+
+  public String getTest() {
+    return test;
+  }
+
+  public void setTest(String test) {
+    this.test = test;
   }
 
   public List<String> getInputWords() {
