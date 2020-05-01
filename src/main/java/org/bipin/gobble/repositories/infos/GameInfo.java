@@ -4,6 +4,7 @@ import org.bipin.gobble.lib.repo.ServiceObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author bipin on 2020-05-01 11:45
@@ -36,5 +37,19 @@ public class GameInfo implements ServiceObject {
 
   public void setGrid(List<List<Character>> grid) {
     this.grid = grid;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GameInfo gameInfo = (GameInfo) o;
+    return Objects.equals(inputWords, gameInfo.inputWords) &&
+        Objects.equals(grid, gameInfo.grid);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(inputWords, grid);
   }
 }

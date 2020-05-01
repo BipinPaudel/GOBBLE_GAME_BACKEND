@@ -1,8 +1,6 @@
-package org.bipin.gobble.lib;
+package org.bipin.gobble.repositories.dictionary;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
-import javax.interceptor.ExcludeDefaultInterceptors;
 import java.io.*;
 import java.util.HashSet;
 import java.util.Set;

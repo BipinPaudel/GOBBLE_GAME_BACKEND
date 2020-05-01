@@ -1,8 +1,10 @@
 package org.bipin.gobble.repositories;
 
+import org.bipin.gobble.lib.utils.Jsons;
 import org.bipin.gobble.repositories.dictionary.DictionaryRepository;
 import org.bipin.gobble.repositories.infos.GameInfo;
 import org.bipin.gobble.repositories.infos.ResultInfo;
+import org.bipin.gobble.repositories.validators.GameRequestValidatorService;
 
 import javax.inject.Inject;
 import java.util.HashMap;
@@ -16,15 +18,18 @@ import java.util.stream.Collectors;
  */
 public class GobbleRepositoryImpl implements GobbleRepository {
 
-  private static final Logger LOGGER= Logger.getLogger(GobbleRepositoryImpl.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(GobbleRepositoryImpl.class.getName());
 
   private SearchRepository searchRepository;
   private DictionaryRepository dictionaryRepository;
+  private GameRequestValidatorService validatorService;
+
   @Inject
   public GobbleRepositoryImpl(SearchRepository searchRepository,
-                              DictionaryRepository dictionaryRepository) {
+                              DictionaryRepository dictionaryRepository, GameRequestValidatorService validatorService) {
     this.searchRepository = searchRepository;
     this.dictionaryRepository = dictionaryRepository;
+    this.validatorService = validatorService;
   }
 
   @Override
@@ -32,41 +37,42 @@ public class GobbleRepositoryImpl implements GobbleRepository {
     validateInput(info);
 
 
-    List<String> correctWords= searchValidWordsInGrid(info.getInputWords(),info.getGrid());
-    int totalScore= prepareTotalScore(correctWords);
-    Map<String,Boolean> wordMap= prepareWordMap(correctWords,info.getInputWords());
+    List<String> correctWords = searchValidWordsInGrid(info.getInputWords(), info.getGrid());
+    int totalScore = prepareTotalScore(correctWords);
+    Map<String, Boolean> wordMap = prepareWordMap(correctWords, info.getInputWords());
 
-    return prepareResponse(totalScore,wordMap,info.getGrid());
+    return prepareResponse(totalScore, wordMap, info.getGrid());
   }
 
-  public void validateInput(GameInfo info){
+  public void validateInput(GameInfo info) {
     //VALIDATE HERE
+    validatorService.validate(info);
   }
 
   private ResultInfo prepareResponse(int totalScore, Map<String, Boolean> wordMap, List<List<Character>> grid) {
-    ResultInfo resultInfo= new ResultInfo();
+    ResultInfo resultInfo = new ResultInfo();
     resultInfo.setGrid(grid);
     resultInfo.setWordMap(wordMap);
-    resultInfo.setTotalScore(totalScore) ;
+    resultInfo.setTotalScore(totalScore);
     return resultInfo;
   }
 
   private List<String> searchValidWordsInGrid(List<String> inputWords, List<List<Character>> grid) {
-    List<String> validDictionaryWords= getValidWordsByCheckinInDictionary(inputWords);
-    GameInfo info= new GameInfo(validDictionaryWords,grid);
+    List<String> validDictionaryWords = getValidWordsByCheckinInDictionary(inputWords);
+    GameInfo info = new GameInfo(validDictionaryWords, grid);
     return searchRepository.execute(info);
   }
 
   private List<String> getValidWordsByCheckinInDictionary(List<String> inputWords) {
     return inputWords.stream()
-        .filter(word-> dictionaryRepository.isWordValidEnglishWord(word))
+        .filter(word -> dictionaryRepository.isWordValidEnglishWord(word))
         .collect(Collectors.toList());
   }
 
   private Map<String, Boolean> prepareWordMap(List<String> correctWords, List<String> inputWords) {
-    Map<String,Boolean> wordMap= new HashMap<>();
-    inputWords.forEach(in->{
-        wordMap.put(in,correctWords.contains(in));
+    Map<String, Boolean> wordMap = new HashMap<>();
+    inputWords.forEach(in -> {
+      wordMap.put(in, correctWords.contains(in));
 
     });
 

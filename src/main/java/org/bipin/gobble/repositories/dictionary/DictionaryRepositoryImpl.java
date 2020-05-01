@@ -1,7 +1,5 @@
 package org.bipin.gobble.repositories.dictionary;
 
-import org.bipin.gobble.lib.Dictionary;
-
 import javax.inject.Inject;
 
 /**
