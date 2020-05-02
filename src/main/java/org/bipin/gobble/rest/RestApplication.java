@@ -18,9 +18,9 @@ public class RestApplication extends Application {
   @Override
   public Set<Class<?>> getClasses() {
     Set<Class<?>> classes = new HashSet<>();
-
-    classes.add(IllegalArgumentException.class);
     classes.add(GobbleResource.class);
+    classes.add(CorsFilter.class);
+    classes.add(IllegalArgumentException.class);
     classes.add(AppExceptionMapper.class);
     classes.add(InternalServerExceptionMapper.class);
     classes.add(MethodNotAllowedExceptionMapper.class);
@@ -28,7 +28,6 @@ public class RestApplication extends Application {
     classes.add(NotAuthorizedExceptionMapper.class);
     classes.add(NullPointerExceptionMapper.class);
     classes.add(UnSupportedMediaTypeExceptionMapper.class);
-    classes.add(CorsFilter.class);
     return classes;
   }
 

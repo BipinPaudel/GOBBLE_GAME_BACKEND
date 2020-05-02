@@ -27,7 +27,15 @@ public class RestResponse {
   }
 
   public static Response ok(Object data) {
-    return Response.ok((new RestResponse("0", "SUCCESS", data)).toJson()).build();
+    return Response.ok((new RestResponse("0", "SUCCESS", data)).toJson())
+//        .status(200)
+//        .header("Access-Control-Allow-Origin", "*")
+//        .header("Access-Control-Allow-Credentials", "true")
+//        .header("Access-Control-Allow-Headers",
+//            "origin, content-type, accept, authorization")
+//        .header("Access-Control-Allow-Methods",
+//            "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+        .build();
   }
 
   public static Response ok() {

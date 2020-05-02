@@ -1,12 +1,16 @@
 package org.bipin.gobble.repositories;
 
 import org.bipin.gobble.lib.mappers.AppException;
+import org.bipin.gobble.lib.utils.HelperUtils;
 import org.bipin.gobble.repositories.infos.GameInfo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,6 +36,25 @@ class SearchRepositoryImplTest {
     assertTrue(correctWords.contains("kira"));
     assertTrue(correctWords.contains("haki"));
     assertTrue(correctWords.contains("rain"));
+  }
+
+  @Test
+  @DisplayName("Random character")
+  void shouldGenerateRandomCharacter(){
+    List<List<Character>> c= generateRandom();
+    System.out.println(c.toString());
+  }
+
+  private List<List<Character>> generateRandom() {
+    List<List<Character>> c= new ArrayList<>();
+    for (int i=0; i<4; i++){
+      List<Character> row= new ArrayList<>();
+      for (int j=0;j<4;j++){
+        row.add(HelperUtils.randomAlphabets(1).charAt(0));
+      }
+      c.add(row);
+    }
+    return c;
   }
 
   private GameInfo prepareGameInfo(){

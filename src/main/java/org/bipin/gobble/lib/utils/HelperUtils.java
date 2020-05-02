@@ -64,4 +64,19 @@ public class HelperUtils {
     return UUID.randomUUID().toString().replaceAll("-", "");
   }
 
+  public static String randomAlphabets(int count) {
+    return buildStringWithDesiredCount(count, "abcdefghijklmnopqrstuvwxyz");
+  }
+
+  private static String buildStringWithDesiredCount(int count, String stringPool) {
+    StringBuilder builder = new StringBuilder();
+
+    while(count-- != 0) {
+      int character = (int)(Math.random() * (double)stringPool.length());
+      builder.append(stringPool.charAt(character));
+    }
+
+    return builder.toString();
+  }
+
 }

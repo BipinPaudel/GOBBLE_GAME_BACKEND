@@ -1,5 +1,6 @@
 package org.bipin.gobble.repositories;
 
+import org.bipin.gobble.lib.utils.HelperUtils;
 import org.bipin.gobble.lib.utils.Jsons;
 import org.bipin.gobble.repositories.dictionary.DictionaryRepository;
 import org.bipin.gobble.repositories.infos.GameInfo;
@@ -7,6 +8,7 @@ import org.bipin.gobble.repositories.infos.ResultInfo;
 import org.bipin.gobble.repositories.validators.GameRequestValidatorService;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,5 +85,18 @@ public class GobbleRepositoryImpl implements GobbleRepository {
     return correctWords.stream()
         .map(String::length)
         .reduce(0, Integer::sum);
+  }
+
+  @Override
+  public List<List<Character>> prepareGrid() {
+    List<List<Character>> c= new ArrayList<>();
+    for (int i=0; i<4; i++){
+      List<Character> row= new ArrayList<>();
+      for (int j=0;j<4;j++){
+        row.add(HelperUtils.randomAlphabets(1).charAt(0));
+      }
+      c.add(row);
+    }
+    return c;
   }
 }

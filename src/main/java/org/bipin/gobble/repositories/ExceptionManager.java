@@ -12,10 +12,10 @@ public class ExceptionManager extends AppException {
   }
 
   public enum GobbleError implements GobbleExceptionType {
-    INPUT_WORD_IS_EMPTY("GE01", "Input word is empty"),
+    INPUT_WORD_IS_EMPTY("GE01", "Input word list is empty"),
     INVALID_GRID_CHARACTER("GE02", "Invalid grid characters"),
-    INPUT_WORD_IS_REPEATED("GE03", "Input words is repeated"),
-    INPUT_WORD_IS_NOT_ALPHABETIC("GE04", "Input word is not alphabet "),
+    INPUT_WORD_IS_REPEATED("GE03", "Input words are repeated"),
+    INPUT_WORD_IS_NOT_ALPHABETIC("GE04", "Input word contains other than alphabetic characters"),
     INPUT_WORD_LESS_THEN_TWO_CHARACTERS("GE05", "Input word is less than 3 characters"),
     GRID_IS_EMPTY("GE06","Grid is empty"),
     ;
