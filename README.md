@@ -151,4 +151,4 @@ HOST_URL/v1/gobble
 - Finally total score is counted on the basis of sum of length of all the valid input words that
 are found in grid.
 
-- 100% test coverage is maintained for all the code that consists of our business login 
+- 100% test coverage is maintained for all the code that consists of business logic. 
