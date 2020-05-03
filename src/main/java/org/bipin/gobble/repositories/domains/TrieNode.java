@@ -1,4 +1,4 @@
-package org.bipin.gobble.repositories.game;
+package org.bipin.gobble.repositories.domains;
 
 import java.util.HashMap;
 import java.util.Map;

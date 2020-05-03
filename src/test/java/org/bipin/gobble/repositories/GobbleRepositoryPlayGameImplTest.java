@@ -1,9 +1,10 @@
 package org.bipin.gobble.repositories;
 
-import org.bipin.gobble.repositories.dictionary.DictionaryService;
+import org.bipin.gobble.repositories.services.search.WordSearchService;
 import org.bipin.gobble.repositories.infos.GameInfo;
 import org.bipin.gobble.repositories.infos.ResultInfo;
 import org.bipin.gobble.repositories.validators.GameRequestValidatorService;
+import org.bipin.gobble.lib.services.DictionaryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,20 +25,20 @@ class GobbleRepositoryPlayGameImplTest {
 
   @BeforeEach
   void setup(){
-    SearchService searchService = Mockito.mock(SearchService.class);
+    WordSearchService searchService = Mockito.mock(WordSearchService.class);
     DictionaryService dictionaryService = Mockito.mock(DictionaryService.class);
     GameRequestValidatorService gameRequestValidatorService= Mockito.mock(GameRequestValidatorService.class);
 
-    when(dictionaryService.isWordValidEnglishWord("oath")).thenReturn(true);
-    when(dictionaryService.isWordValidEnglishWord("pea")).thenReturn(true);
-    when(dictionaryService.isWordValidEnglishWord("oat")).thenReturn(true);
-    when(dictionaryService.isWordValidEnglishWord("rain")).thenReturn(true);
+    when(dictionaryService.isWordValidDictionaryWord("oath")).thenReturn(true);
+    when(dictionaryService.isWordValidDictionaryWord("pea")).thenReturn(true);
+    when(dictionaryService.isWordValidDictionaryWord("oat")).thenReturn(true);
+    when(dictionaryService.isWordValidDictionaryWord("rain")).thenReturn(true);
 
 
     GameInfo info= new GameInfo();;
     info.setInputWords(List.of("oath","pea","rain","oat"));
     info.setGrid(getGrid1());
-    when(searchService.execute(info)).thenReturn(List.of("oath","rain","oat"));
+    when(searchService.search(info)).thenReturn(List.of("oath","rain","oat"));
     gobbleRepository= new GobbleRepositoryImpl(searchService, dictionaryService,gameRequestValidatorService);
   }
 

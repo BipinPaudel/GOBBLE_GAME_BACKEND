@@ -2,7 +2,7 @@ package org.bipin.gobble.repositories.validators;
 
 import com.google.common.base.Strings;
 import org.bipin.gobble.lib.mappers.AppException;
-import org.bipin.gobble.lib.utils.HelperUtils;
+import org.bipin.gobble.repositories.helpers.HelperUtils;
 import org.bipin.gobble.repositories.ExceptionManager;
 import org.bipin.gobble.repositories.infos.GameInfo;
 

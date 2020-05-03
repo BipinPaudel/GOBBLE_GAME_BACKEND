@@ -1,6 +1,6 @@
 package org.bipin.gobble.repositories.infos;
 
-import org.bipin.gobble.lib.repo.ServiceObject;
+import org.bipin.gobble.lib.services.ServiceObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;

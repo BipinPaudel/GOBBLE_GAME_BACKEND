@@ -1,4 +1,4 @@
-package org.bipin.gobble.lib.utils;
+package org.bipin.gobble.repositories.helpers;
 
 /**
  * @author bipin on 2020-04-27 13:07

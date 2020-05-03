@@ -2,7 +2,7 @@ package org.bipin.gobble.lib.mappers;
 
 import org.bipin.gobble.lib.exceptions.GobbleException;
 import org.bipin.gobble.lib.exceptions.GobbleExceptionType;
-import org.bipin.gobble.lib.utils.HelperUtils;
+import org.bipin.gobble.repositories.helpers.HelperUtils;
 
 import javax.json.Json;
 import javax.json.JsonObject;

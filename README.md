@@ -147,12 +147,12 @@ HOST_URL/v1/gobble
 ## Description
 
 - Input Data is validated in the beginning. 
-- Input Words are validated against the dictionary words.
+- Input Words are validated against the englishDictionary words.
     1. There is a word file that contains almost 370000 valid English words.
     2. The file is read only once and stored in HashSet that has search time complexity of 
     O(n).
-    3. The dictionary set then, resides in memory until the server is stopped.
-- Valid words are filtered from dictionary then.
+    3. The englishDictionary set then, resides in memory until the server is stopped.
+- Valid words are filtered from englishDictionary then.
 - TrieData structure is used to convert all the valid input words to the tree format.
 - Depth first search algorithm is used in the grid to search whether the word.
 - Finally total score is counted on the basis of sum of length of all the valid input words that
@@ -167,7 +167,7 @@ are found in grid.
 - GobbleRepository
     - This file contains main usecase of our file
 - DictionaryService
-    - This file contains a function that checks whether the input word is valid dictionary word or not.
+    - This file contains a function that checks whether the input word is valid englishDictionary word or not.
 - SearchService
     - This file takes input words and grid and search whether the word is located in the grid or not
 - GameRequestValidatorService

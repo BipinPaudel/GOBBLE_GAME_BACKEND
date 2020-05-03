@@ -1,7 +1,8 @@
 package org.bipin.gobble.repositories;
 
-import org.bipin.gobble.lib.utils.HelperUtils;
+import org.bipin.gobble.repositories.helpers.HelperUtils;
 import org.bipin.gobble.repositories.infos.GameInfo;
+import org.bipin.gobble.repositories.services.search.SearchServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ class SearchServiceImplTest {
   @DisplayName("Should return valid words as desired given grid and input words")
   void shouldReturnValidWordsAsDesired(){
     GameInfo info= prepareGameInfo();
-    List<String> correctWords= searchRepository.execute(info);
+    List<String> correctWords= searchRepository.search(info);
     assertEquals(8,correctWords.size());
     assertTrue(correctWords.contains("oath"));
     assertTrue(correctWords.contains("eat"));

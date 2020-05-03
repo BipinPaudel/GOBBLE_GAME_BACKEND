@@ -1,4 +1,4 @@
-package org.bipin.gobble.repositories.dictionary;
+package org.bipin.gobble.repositories.services.dictionary;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.io.*;
@@ -9,14 +9,14 @@ import java.util.Set;
  * @author bipin on 2020-05-01 15:29
  */
 @ApplicationScoped
-public class Dictionary {
+public class EnglishDictionary {
   private Set<String> dictionary;
 
-  public Dictionary() {
+  public EnglishDictionary() {
     dictionary= new HashSet<>();
   }
 
-  public Dictionary(Set<String> dictionary) {
+  public EnglishDictionary(Set<String> dictionary) {
     this.dictionary = dictionary;
   }
 

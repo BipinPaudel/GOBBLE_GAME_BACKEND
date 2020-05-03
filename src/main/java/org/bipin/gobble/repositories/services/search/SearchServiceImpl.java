@@ -1,9 +1,9 @@
-package org.bipin.gobble.repositories;
+package org.bipin.gobble.repositories.services.search;
 
-import org.bipin.gobble.lib.utils.Constants;
-import org.bipin.gobble.lib.utils.HelperUtils;
-import org.bipin.gobble.repositories.game.BoundaryIndex;
-import org.bipin.gobble.repositories.game.TrieNode;
+import org.bipin.gobble.repositories.helpers.Constants;
+import org.bipin.gobble.repositories.helpers.HelperUtils;
+import org.bipin.gobble.repositories.domains.BoundaryIndex;
+import org.bipin.gobble.repositories.domains.TrieNode;
 import org.bipin.gobble.repositories.infos.GameInfo;
 
 import java.util.ArrayList;
@@ -14,10 +14,10 @@ import java.util.Set;
 /**
  * @author bipin on 2020-05-01 13:15
  */
-public class SearchServiceImpl implements SearchService {
+public class SearchServiceImpl implements WordSearchService {
 
   @Override
-  public List<String> execute(GameInfo info) {
+  public List<String> search(GameInfo info) {
     TrieNode root= new TrieNode();
     info.getInputWords().forEach(s->root.add(s,s));
     char[][] grid= convertToCharGrid(info.getGrid());

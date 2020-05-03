@@ -1,4 +1,4 @@
-package org.bipin.gobble.repositories.game;
+package org.bipin.gobble.repositories.domains;
 
 /**
  * @author bipin on 2020-04-29 17:43

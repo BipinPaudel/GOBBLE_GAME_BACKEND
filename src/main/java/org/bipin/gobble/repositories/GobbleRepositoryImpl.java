@@ -1,10 +1,11 @@
 package org.bipin.gobble.repositories;
 
-import org.bipin.gobble.lib.utils.HelperUtils;
-import org.bipin.gobble.repositories.dictionary.DictionaryService;
+import org.bipin.gobble.repositories.helpers.HelperUtils;
+import org.bipin.gobble.repositories.services.search.WordSearchService;
 import org.bipin.gobble.repositories.infos.GameInfo;
 import org.bipin.gobble.repositories.infos.ResultInfo;
 import org.bipin.gobble.repositories.validators.GameRequestValidatorService;
+import org.bipin.gobble.lib.services.DictionaryService;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -21,12 +22,12 @@ public class GobbleRepositoryImpl implements GobbleRepository {
 
   private static final Logger LOGGER = Logger.getLogger(GobbleRepositoryImpl.class.getName());
 
-  private SearchService searchService;
+  private WordSearchService searchService;
   private DictionaryService dictionaryService;
   private GameRequestValidatorService validatorService;
 
   @Inject
-  public GobbleRepositoryImpl(SearchService searchService,
+  public GobbleRepositoryImpl(WordSearchService searchService,
                               DictionaryService dictionaryService, GameRequestValidatorService validatorService) {
     this.searchService = searchService;
     this.dictionaryService = dictionaryService;
@@ -61,12 +62,12 @@ public class GobbleRepositoryImpl implements GobbleRepository {
   private List<String> searchValidWordsInGrid(List<String> inputWords, List<List<Character>> grid) {
     List<String> validDictionaryWords = getValidWordsByCheckinInDictionary(inputWords);
     GameInfo info = new GameInfo(validDictionaryWords, grid);
-    return searchService.execute(info);
+    return searchService.search(info);
   }
 
   private List<String> getValidWordsByCheckinInDictionary(List<String> inputWords) {
     return inputWords.stream()
-        .filter(word -> dictionaryService.isWordValidEnglishWord(word))
+        .filter(word -> dictionaryService.isWordValidDictionaryWord(word))
         .collect(Collectors.toList());
   }
 

@@ -1,6 +1,6 @@
-package org.bipin.gobble.lib.utils;
+package org.bipin.gobble.repositories.helpers;
 
-import org.bipin.gobble.repositories.game.BoundaryIndex;
+import org.bipin.gobble.repositories.domains.BoundaryIndex;
 
 import java.text.SimpleDateFormat;
 import java.util.*;

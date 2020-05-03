@@ -1,6 +1,4 @@
-package org.bipin.gobble.repositories.validators;
-
-import org.bipin.gobble.lib.repo.ServiceObject;
+package org.bipin.gobble.lib.services;
 
 /**
  * @author bipin on 2020-05-01 17:46
