@@ -2,6 +2,13 @@
 
 - The following project is implemented using Java EE/ CDI framework using jdk 11.
 
+## Demo of the application
+```https://youtu.be/db_f2KOYXx4```
+
+## Frontend implementation of the project
+```https://github.com/BipinPaudel/GOBBLE_GAME_FRONTEND```
+
+
 ## Getting Started ##
 - Clone the project in your system
 - Make sure you have docker installed to start the application
