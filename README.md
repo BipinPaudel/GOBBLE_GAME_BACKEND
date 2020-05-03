@@ -3,6 +3,8 @@
 - The following project is implemented using Java EE/ CDI framework using jdk 11.
 
 ## Demo of the application
+```https://youtu.be/Y83F0O0W51U```
+
 ```https://youtu.be/db_f2KOYXx4```
 
 ## Frontend implementation of the project
