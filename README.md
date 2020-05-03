@@ -160,6 +160,18 @@ are found in grid.
 
 - 100% test coverage is maintained for all the code that consists of business logic. 
 
+## Packages
+- There are four high level packages
+    1. rest:  Package that contains end point of api
+    2. lib: Library files 
+    3. repositories: Main business logic of the project
+       1. domains: Object files associated to game search
+       2. helpers: Files that contains helper methods and constants.
+       3. infos: Object files related to the project
+       3. services: Contains game services like dictionary search, word search in grid.
+       4. validators: Files that validates our input data
+       
+
 ## Code Description
 
 - GobbleResource
