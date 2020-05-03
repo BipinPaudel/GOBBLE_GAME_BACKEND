@@ -2,7 +2,6 @@ package org.bipin.gobble.rest;
 
 import org.bipin.gobble.lib.utils.RestResponse;
 import org.bipin.gobble.repositories.GobbleRepository;
-import org.bipin.gobble.repositories.infos.GameInfo;
 import org.bipin.gobble.repositories.infos.ResultInfo;
 import org.bipin.gobble.rest.adaptors.GameRequestAdaptor;
 

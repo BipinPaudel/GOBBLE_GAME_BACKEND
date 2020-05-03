@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * @author bipin on 2020-05-01 13:15
  */
-public class SearchRepositoryImpl implements SearchRepository {
+public class SearchServiceImpl implements SearchService {
 
   @Override
   public List<String> execute(GameInfo info) {

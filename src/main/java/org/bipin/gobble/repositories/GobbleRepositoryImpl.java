@@ -1,8 +1,7 @@
 package org.bipin.gobble.repositories;
 
 import org.bipin.gobble.lib.utils.HelperUtils;
-import org.bipin.gobble.lib.utils.Jsons;
-import org.bipin.gobble.repositories.dictionary.DictionaryRepository;
+import org.bipin.gobble.repositories.dictionary.DictionaryService;
 import org.bipin.gobble.repositories.infos.GameInfo;
 import org.bipin.gobble.repositories.infos.ResultInfo;
 import org.bipin.gobble.repositories.validators.GameRequestValidatorService;
@@ -22,15 +21,15 @@ public class GobbleRepositoryImpl implements GobbleRepository {
 
   private static final Logger LOGGER = Logger.getLogger(GobbleRepositoryImpl.class.getName());
 
-  private SearchRepository searchRepository;
-  private DictionaryRepository dictionaryRepository;
+  private SearchService searchService;
+  private DictionaryService dictionaryService;
   private GameRequestValidatorService validatorService;
 
   @Inject
-  public GobbleRepositoryImpl(SearchRepository searchRepository,
-                              DictionaryRepository dictionaryRepository, GameRequestValidatorService validatorService) {
-    this.searchRepository = searchRepository;
-    this.dictionaryRepository = dictionaryRepository;
+  public GobbleRepositoryImpl(SearchService searchService,
+                              DictionaryService dictionaryService, GameRequestValidatorService validatorService) {
+    this.searchService = searchService;
+    this.dictionaryService = dictionaryService;
     this.validatorService = validatorService;
   }
 
@@ -62,12 +61,12 @@ public class GobbleRepositoryImpl implements GobbleRepository {
   private List<String> searchValidWordsInGrid(List<String> inputWords, List<List<Character>> grid) {
     List<String> validDictionaryWords = getValidWordsByCheckinInDictionary(inputWords);
     GameInfo info = new GameInfo(validDictionaryWords, grid);
-    return searchRepository.execute(info);
+    return searchService.execute(info);
   }
 
   private List<String> getValidWordsByCheckinInDictionary(List<String> inputWords) {
     return inputWords.stream()
-        .filter(word -> dictionaryRepository.isWordValidEnglishWord(word))
+        .filter(word -> dictionaryService.isWordValidEnglishWord(word))
         .collect(Collectors.toList());
   }
 

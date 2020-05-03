@@ -1,10 +1,9 @@
 package org.bipin.gobble.repositories;
 
-import org.bipin.gobble.repositories.dictionary.DictionaryRepository;
+import org.bipin.gobble.repositories.dictionary.DictionaryService;
 import org.bipin.gobble.repositories.infos.GameInfo;
 import org.bipin.gobble.repositories.infos.ResultInfo;
 import org.bipin.gobble.repositories.validators.GameRequestValidatorService;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,21 +24,21 @@ class GobbleRepositoryPlayGameImplTest {
 
   @BeforeEach
   void setup(){
-    SearchRepository searchRepository= Mockito.mock(SearchRepository.class);
-    DictionaryRepository dictionaryRepository= Mockito.mock(DictionaryRepository.class);
+    SearchService searchService = Mockito.mock(SearchService.class);
+    DictionaryService dictionaryService = Mockito.mock(DictionaryService.class);
     GameRequestValidatorService gameRequestValidatorService= Mockito.mock(GameRequestValidatorService.class);
 
-    when(dictionaryRepository.isWordValidEnglishWord("oath")).thenReturn(true);
-    when(dictionaryRepository.isWordValidEnglishWord("pea")).thenReturn(true);
-    when(dictionaryRepository.isWordValidEnglishWord("oat")).thenReturn(true);
-    when(dictionaryRepository.isWordValidEnglishWord("rain")).thenReturn(true);
+    when(dictionaryService.isWordValidEnglishWord("oath")).thenReturn(true);
+    when(dictionaryService.isWordValidEnglishWord("pea")).thenReturn(true);
+    when(dictionaryService.isWordValidEnglishWord("oat")).thenReturn(true);
+    when(dictionaryService.isWordValidEnglishWord("rain")).thenReturn(true);
 
 
     GameInfo info= new GameInfo();;
     info.setInputWords(List.of("oath","pea","rain","oat"));
     info.setGrid(getGrid1());
-    when(searchRepository.execute(info)).thenReturn(List.of("oath","rain","oat"));
-    gobbleRepository= new GobbleRepositoryImpl(searchRepository,dictionaryRepository,gameRequestValidatorService);
+    when(searchService.execute(info)).thenReturn(List.of("oath","rain","oat"));
+    gobbleRepository= new GobbleRepositoryImpl(searchService, dictionaryService,gameRequestValidatorService);
   }
 
 

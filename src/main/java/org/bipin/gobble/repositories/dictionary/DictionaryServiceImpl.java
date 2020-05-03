@@ -5,12 +5,12 @@ import javax.inject.Inject;
 /**
  * @author bipin on 2020-05-01 14:56
  */
-public class DictionaryRepositoryImpl implements DictionaryRepository {
+public class DictionaryServiceImpl implements DictionaryService {
 
  Dictionary dictionary;
 
  @Inject
-  public DictionaryRepositoryImpl( Dictionary dictionary) {
+  public DictionaryServiceImpl(Dictionary dictionary) {
    this.dictionary= dictionary;
   }
 

@@ -144,7 +144,7 @@ HOST_URL/v1/gobble
 | GE06  |Grid is empty  |
 
 
-## Code Description
+## Description
 
 - Input Data is validated in the beginning. 
 - Input Words are validated against the dictionary words.
@@ -159,3 +159,18 @@ HOST_URL/v1/gobble
 are found in grid.
 
 - 100% test coverage is maintained for all the code that consists of business logic. 
+
+## Code Description
+
+- GobbleResource
+    -  Rest endpoint is located in this file.
+- GobbleRepository
+    - This file contains main usecase of our file
+- DictionaryService
+    - This file contains a function that checks whether the input word is valid dictionary word or not.
+- SearchService
+    - This file takes input words and grid and search whether the word is located in the grid or not
+- GameRequestValidatorService
+    - This file validates the input data.
+- DictionaryService, SearchService and GameRequestValidatorService are injected in
+Gobble Repository and executed accordingly.

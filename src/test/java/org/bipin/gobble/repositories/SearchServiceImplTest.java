@@ -1,6 +1,5 @@
 package org.bipin.gobble.repositories;
 
-import org.bipin.gobble.lib.mappers.AppException;
 import org.bipin.gobble.lib.utils.HelperUtils;
 import org.bipin.gobble.repositories.infos.GameInfo;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,20 +8,18 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author bipin on 2020-05-01 13:35
  */
-class SearchRepositoryImplTest {
-  private static SearchRepositoryImpl searchRepository;
+class SearchServiceImplTest {
+  private static SearchServiceImpl searchRepository;
 
   @BeforeEach
   void setup(){
-    searchRepository= new SearchRepositoryImpl();
+    searchRepository= new SearchServiceImpl();
   }
 
   @Test
