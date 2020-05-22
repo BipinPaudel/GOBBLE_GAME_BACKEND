@@ -152,7 +152,7 @@ HOST_URL/v1/gobble
 - Input Words are validated against the englishDictionary words.
     1. There is a word file that contains almost 370000 valid English words.
     2. The file is read only once and stored in HashSet that has search time complexity of 
-    O(n).
+    O(1).
     3. The englishDictionary set then, resides in memory until the server is stopped.
 - Valid words are filtered from englishDictionary then.
 - TrieData structure is used to convert all the valid input words to the tree format.
